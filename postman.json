@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "246877be-a4de-4d78-8791-2b87c966be9a",
+		"name": "pet-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2314778"
+	},
+	"item": [
+		{
+			"name": "Pet - Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1    ,\n    \"nome\": \"Kevin\",\n    \"especie\": \"dog\",\n    \"idade\": \"18\",\n    \"cpf\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pets"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
