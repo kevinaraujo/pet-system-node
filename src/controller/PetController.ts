@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import SpecieEnum from "../enum/SpecieEnum";
 import type petType from "../types/petType";
 
 let petList: Array<petType> = [];
@@ -8,6 +9,14 @@ export default class PetController {
         const { id, nome, especie, adotado, idade } = <petType>req.body;
 
         const newPet: petType = { id, nome, especie, adotado, idade };
+        
+        if (!Object.values(SpecieEnum).includes(especie)) {
+            return res
+                .status(400)
+                .json({ 
+                    error: "Invalid Specie"
+                })
+        }
 
         petList.push(newPet);
 
