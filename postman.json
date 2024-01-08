@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 1    ,\n    \"nome\": \"Kevin\",\n    \"especie\": \"dog\",\n    \"idade\": \"18\",\n    \"cpf\": \"123456\"\n}",
+					"raw": "{\n    \"id\": 1    ,\n    \"nome\": \"Kevin\",\n    \"especie\": \"dog\",\n    \"idade\": \"18\",\n    \"adotado\": false,\n    \"cpf\": \"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -29,6 +29,74 @@
 					"port": "3000",
 					"path": [
 						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet - get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet - update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Luz\",\n    \"especie\": \"dog\",\n    \"idade\": \"9\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pets/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pets",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet - delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pets/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pets",
+						"2"
 					]
 				}
 			},
