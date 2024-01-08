@@ -8,7 +8,11 @@ export default class PetController {
     criarPet(req: Request, res: Response) {
         const { id, nome, especie, adotado, idade } = <petType>req.body;
 
-        const newPet: petType = { id, nome, especie, adotado, idade };
+        if (!adotado || !especie || !nome || !idade) {
+            return res
+              .status(400)
+              .json({ erro: "All fields required." });
+          }
         
         if (!Object.values(SpecieEnum).includes(especie)) {
             return res
@@ -17,6 +21,8 @@ export default class PetController {
                     error: "Invalid Specie"
                 })
         }
+
+        const newPet: petType = { id, nome, especie, adotado, idade };
 
         petList.push(newPet);
 
