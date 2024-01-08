@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 1    ,\n    \"nome\": \"Kevin\",\n    \"especie\": \"dog\",\n    \"idade\": \"18\",\n    \"adotado\": false,\n    \"cpf\": \"123456\"\n}",
+					"raw": "{\n    \"nome\": \"www\",\n    \"especie\": \"gato\",\n    \"dataNasc\": \"2019-01-08T20:42:47.754Z\",\n    \"adotado\": false,\n    \"cpf\": \"456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,7 +60,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Luz\",\n    \"especie\": \"dog\",\n    \"idade\": \"9\"\n}",
+					"raw": "{\n    \"nome\": \"Luz\",\n    \"especie\": \"dog\",\n    \"dataNasc\": \"2020-01-08T20:42:47.754Z\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

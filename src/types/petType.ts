@@ -5,7 +5,7 @@ import SpecieEnum from "../enum/SpecieEnum";
         nome: string;
         especie: SpecieEnum;
         adotado: string;
-        idade: number;
+        dataNasc: Date;
     }
 
     export default petType;

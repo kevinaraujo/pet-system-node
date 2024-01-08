@@ -3,16 +3,21 @@ import SpecieEnum from "../enum/SpecieEnum";
 import type petType from "../types/petType";
 
 let petList: Array<petType> = [];
+let id = 0;
 
+function geraId() {
+  id = id + 1;
+  return id;
+}
 export default class PetController {
     criarPet(req: Request, res: Response) {
-        const { id, nome, especie, adotado, idade } = <petType>req.body;
+        const { nome, especie, adotado, dataNasc } = <petType>req.body;
 
-        if (!adotado || !especie || !nome || !idade) {
+        if (!especie || !nome || !dataNasc) {
             return res
               .status(400)
               .json({ erro: "All fields required." });
-          }
+        }
         
         if (!Object.values(SpecieEnum).includes(especie)) {
             return res
@@ -22,7 +27,7 @@ export default class PetController {
                 })
         }
 
-        const newPet: petType = { id, nome, especie, adotado, idade };
+        const newPet: petType = { id: geraId(), nome, especie, adotado, dataNasc };
 
         petList.push(newPet);
 
@@ -39,7 +44,7 @@ export default class PetController {
 
     atualizarPet(req: Request, res: Response) {
         const { id } = req.params;
-        const { nome, especie, adotado, idade } = req.body as petType;
+        const { nome, especie, adotado, dataNasc } = req.body as petType;
 
         const pet = petList.find(pet => pet.id === Number(id));
 
@@ -52,7 +57,7 @@ export default class PetController {
         }
 
         pet.nome = nome;
-        pet.idade = idade;
+        pet.dataNasc = dataNasc;
         pet.especie = especie;
         pet.adotado = adotado;
         
