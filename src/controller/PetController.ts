@@ -45,7 +45,9 @@ export default class PetController {
             .json(newPet);
     }
 
-    listarPets(req: Request, res: Response) {
+    async listarPets(req: Request, res: Response) {
+        const petList = await this.repository.listarPet();
+
         return res
             .status(200)
             .json(petList);
