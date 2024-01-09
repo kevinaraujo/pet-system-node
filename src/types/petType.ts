@@ -4,7 +4,7 @@ import SpecieEnum from "../enum/SpecieEnum";
         id: number;
         nome: string;
         especie: SpecieEnum;
-        adotado: string;
+        adotado: boolean;
         dataNasc: Date;
     }
 
