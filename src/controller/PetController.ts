@@ -53,28 +53,18 @@ export default class PetController {
             .json(petList);
     }
 
-    atualizarPet(req: Request, res: Response) {
+    async atualizarPet(req: Request, res: Response) {
         const { id } = req.params;
-        const { nome, especie, adotado, dataNasc } = req.body as petType;
+        const { success, message } = await this.repository.atualizarPet(
+            Number(id),
+            req.body as PetEntity
+        );
 
-        const pet = petList.find(pet => pet.id === Number(id));
-
-        if(!pet) {
-            return res
-                .status(404)
-                .json({
-                    error: "Pet not found"
-                }); 
+        if (!success) {
+            return res.status(404).json({ message });
         }
 
-        pet.nome = nome;
-        pet.dataNasc = dataNasc;
-        pet.especie = especie;
-        pet.adotado = adotado;
-        
-        return res
-            .status(200)
-            .json(pet);
+        return res.sendStatus(204);
     }
 
     async deletarPet(req: Request, res: Response) {

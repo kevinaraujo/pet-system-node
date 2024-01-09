@@ -17,11 +17,36 @@ export default class PetRepository implements InterfacePetRepository {
         return await this.repository.find();
     }
 
-    atualizarPet(
+    async atualizarPet(
         id: number, 
-        pet: PetEntity
+        newData: PetEntity
     ): Promise<{ success: boolean, message?: string}> {
-        throw new Error("Method not implemented.");
+        try {
+            const pet = await this.repository.findOne({ where: { id }});
+
+            if(!pet) {
+                return {
+                    success: false,
+                    message: "Pet not found."
+                };
+            }
+            console.log('pet => ', pet)
+            console.log('newData => ', newData)
+
+            Object.assign(pet, newData);
+
+            await this.repository.save(pet);
+
+            return { success: true };
+
+        } catch (err) {
+            console.log(err);
+
+            return {
+                success: false,
+                message: "Occurred an error when tried to update the pet."
+            }
+        }
     }
 
     async deletarPet(id: number): Promise<{ success: boolean, message?: string}> {
@@ -39,6 +64,8 @@ export default class PetRepository implements InterfacePetRepository {
             return { success: true };
         
         } catch (err) {
+            console.log(err);
+            
             return {
                 success: false,
                 message: "Occurred an error when tried to delete the pet."
