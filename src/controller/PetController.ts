@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
+import PetEntity from "../entities/PetEntity";
 import SpecieEnum from "../enum/SpecieEnum";
+import PetRepository from "../repositories/PetRepository";
 import type petType from "../types/petType";
 
 let petList: Array<petType> = [];
@@ -10,8 +12,10 @@ function geraId() {
   return id;
 }
 export default class PetController {
+    constructor(private repository: PetRepository) {}
+
     criarPet(req: Request, res: Response) {
-        const { nome, especie, adotado, dataNasc } = <petType>req.body;
+        const { nome, especie, adotado, dataNasc } = <PetEntity>req.body;
 
         if (!especie || !nome || !dataNasc) {
             return res
@@ -27,9 +31,14 @@ export default class PetController {
                 })
         }
 
-        const newPet: petType = { id: geraId(), nome, especie, adotado, dataNasc };
+        const newPet = new PetEntity();
+        newPet.id = geraId();
+        newPet.nome = nome;
+        newPet.especie = especie;
+        newPet.adotado = adotado;
+        newPet.dataNasc = dataNasc;
 
-        petList.push(newPet);
+       this.repository.criarPet(newPet);
 
         return res
             .status(201)
