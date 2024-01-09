@@ -77,27 +77,17 @@ export default class PetController {
             .json(pet);
     }
 
-    deletarPet(req: Request, res: Response) {
+    async deletarPet(req: Request, res: Response) {
         const { id } = req.params;
 
-        const pet = petList.find(pet => pet.id === Number(id));
+        const { success, message } = await this.repository.deletarPet(Number(id));
 
-        if (!pet) {
+        if (!success) {
             return res
                 .status(404)
-                .json({
-                    error: "Pet not found"
-                });
+                .json({ message });
         }
 
-        const index = petList.indexOf(pet);
-        petList.splice(index, 1);
-
-         
-        return res
-            .status(200)
-            .json({
-                message: "Deletado com sucesso"
-            });
+        return res.sendStatus(204);
     }
 }
