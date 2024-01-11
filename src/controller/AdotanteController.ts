@@ -48,6 +48,26 @@ export default class AdotanteController {
         }
     }
 
+    async atualizarAdotante(req: Request, res: Response) {
+        const { id } = req.params;
+        
+        const { success, message } = await this.repository.atualizarAdotante(
+            Number(id),
+            <AdotanteEntity>req.body
+        );
+
+        if (!success) {
+            return res 
+                .status(500)
+                .json(message);
+        }
+
+        return res.json({
+                success: true,
+                message: `Adopter ${id} updated.`
+            })
+    }
+
     async deletarAdotante(req: Request, res: Response) {
         const { id } = req.params;
 

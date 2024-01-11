@@ -54,7 +54,7 @@
 			"response": []
 		},
 		{
-			"name": "Pet - update",
+			"name": "Pet - update by id",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -164,6 +164,35 @@
 					"path": [
 						"adotante",
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adopter - update by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Marcelo\",\n    \"foto\": \"new_pic.png\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/adotante/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"adotante",
+						"4"
 					]
 				}
 			},

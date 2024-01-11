@@ -13,8 +13,32 @@ export default class AdotanteRepository implements InterfaceAdotanteRepository {
         return await this.repository.find();
     }
 
-    atualizarAdotante(id: number, adotante: AdotanteEntity): void | Promise<{ success: boolean; message?: string | undefined; }> {
-        throw new Error("Method not implemented.");
+    async atualizarAdotante(id: number, newData: AdotanteEntity): Promise<{ success: boolean; message?: string }> {
+        try {
+            const adotante = await this.repository.findOne({ where: { id }});
+
+            if (!adotante) {
+                return {
+                    success: false,
+                    message: 'Adopter not found.'
+                };
+            }
+
+            Object.assign(adotante, newData);
+
+            await this.repository.save(adotante);
+
+            return {
+                success: true,
+                message: `Adopter ${id} updated successfully.`
+            };
+
+        } catch (err) {
+            return {
+                success: false,
+                message: 'Error on update Adopter.'
+            };
+        }
     }
 
     async deletarAdotante(id: number): Promise<{ success: boolean, message?: string }> {
