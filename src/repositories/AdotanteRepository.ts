@@ -17,8 +17,30 @@ export default class AdotanteRepository implements InterfaceAdotanteRepository {
         throw new Error("Method not implemented.");
     }
 
-    deletarAdotante(id: number): void | Promise<{ success: boolean; message?: string | undefined; }> {
-        throw new Error("Method not implemented.");
+    async deletarAdotante(id: number): Promise<{ success: boolean, message?: string }> {
+        try {
+            const adotante = await this.repository.findOne({ where: { id }});
+
+            if (!adotante) {
+                return {
+                    success: false,
+                    message: 'Adopter not found.'
+                };
+            }
+            
+            await this.repository.remove(adotante);
+
+            return {
+                success: true,
+                message: 'Success on delete adopter.'
+            }
+
+        } catch (err) {
+            return {
+                success: false,
+                message: 'Error when tried to delete Adopter.'
+            };
+        }
     }
 
     criarAdotante(adotante: AdotanteEntity): void {
