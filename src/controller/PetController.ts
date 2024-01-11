@@ -14,7 +14,7 @@ function geraId() {
 export default class PetController {
     constructor(private repository: PetRepository) {}
 
-    criarPet(req: Request, res: Response) {
+    async criarPet(req: Request, res: Response) {
         const { nome, especie, adotado, dataNasc } = <PetEntity>req.body;
 
         if (!especie || !nome || !dataNasc) {
@@ -31,14 +31,14 @@ export default class PetController {
                 })
         }
 
-        const newPet = new PetEntity();
-        newPet.id = geraId();
-        newPet.nome = nome;
-        newPet.especie = especie;
-        newPet.adotado = adotado;
-        newPet.dataNasc = dataNasc;
+        const newPet = new PetEntity(
+            nome,
+            especie,
+            dataNasc,
+            adotado
+        );
 
-       this.repository.criarPet(newPet);
+        await this.repository.criarPet(newPet);
 
         return res
             .status(201)
