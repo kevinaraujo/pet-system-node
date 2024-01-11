@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Pet - Create",
+			"name": "Pet - create",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -97,6 +97,34 @@
 					"path": [
 						"pets",
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adopter - create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Kevinho\",\n    \"senha\": \"123456\",\n    \"celular\": \"1196258 9632\",\n    \"foto\": \"ft.jpg\",\n    \"endereco\": \"RUa joao 15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/adotante",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"adotante"
 					]
 				}
 			},
