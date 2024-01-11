@@ -129,6 +129,25 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Adopter - get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/adotante",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"adotante"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

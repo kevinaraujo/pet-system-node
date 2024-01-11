@@ -9,7 +9,20 @@ export default class AdotanteRepository implements InterfaceAdotanteRepository {
         this.repository = repository;
     }
 
+    async listarAdotante(): Promise<AdotanteEntity[]> {
+        return await this.repository.find();
+    }
+
+    atualizarAdotante(id: number, adotante: AdotanteEntity): void | Promise<{ success: boolean; message?: string | undefined; }> {
+        throw new Error("Method not implemented.");
+    }
+
+    deletarAdotante(id: number): void | Promise<{ success: boolean; message?: string | undefined; }> {
+        throw new Error("Method not implemented.");
+    }
+
     criarAdotante(adotante: AdotanteEntity): void {
         this.repository.save(adotante);
     }
+    
 }

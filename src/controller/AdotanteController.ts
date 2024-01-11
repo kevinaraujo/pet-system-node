@@ -32,4 +32,19 @@ export default class AdotanteController {
                 });
         }
     }
+
+    async listarAdotante(req: Request, res: Response) {
+        try {
+            const list = await this.repository.listarAdotante();
+
+            return res.json(list);
+
+        } catch (err) {
+            return res
+                .status(500)
+                .json({
+                    error: 'Error when tried to list Adopters.'
+                })
+        }
+    }
 }
