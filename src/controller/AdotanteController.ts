@@ -11,10 +11,10 @@ export default class AdotanteController {
 
             const newAdotante = new AdotanteEntity(
                 nome,
+                senha,
                 celular,
-                endereco,
                 foto,
-                senha
+                endereco,
             );
 
             await this.repository.criarAdotante(newAdotante);
