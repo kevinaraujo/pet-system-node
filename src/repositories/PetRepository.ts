@@ -1,15 +1,16 @@
 import { Repository } from "typeorm";
+import AdotanteEntity from "../entities/AdotanteEntity";
 import PetEntity from "../entities/PetEntity";
 import AdotanteRepository from "./AdotanteRepository";
 import InterfacePetRepository from "./interfaces/InterfacePetRepository";
 
 export default class PetRepository implements InterfacePetRepository {
     private repository: Repository<PetEntity>;
-    private adotanteRepository: Repository<AdotanteRepository>
+    private adotanteRepository: Repository<AdotanteEntity>
 
     constructor(
         repository: Repository<PetEntity>,
-        adotanteRepository: Repository<AdotanteRepository>
+        adotanteRepository: Repository<AdotanteEntity>
     ) {
         this.repository = repository;
         this.adotanteRepository = adotanteRepository;
@@ -80,12 +81,39 @@ export default class PetRepository implements InterfacePetRepository {
     }
 
     async adotarPet(
-        pet_id: number, 
-        adotante_id: number
+        petId: number, 
+        adotanteId: number
     ): Promise<{ success: boolean, message: string }> {
+        const pet = await this.repository.findOne({
+            where: { id: petId }
+        });
+
+        if (!pet) {
+            return {
+                success: false,
+                message: 'Pet not found.'
+            };
+        }
+
+        const adotante = await this.adotanteRepository.findOne({
+            where: { id: adotanteId }
+        });
+
+        if (!adotante) {
+            return {
+                success: false,
+                message: 'Adopter not found.'
+            };
+        }
+
+        pet.adotante = adotante;
+        pet.adotado = true;
+
+        await this.repository.save(pet);
+
         return {
             success: true,
-            message: 'Adopter linked with pet'
+            message: 'Adoption done.'
         }
     }
     

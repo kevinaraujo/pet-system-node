@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"thor\",\n    \"especie\": \"cachorro\",\n    \"dataNasc\": \"2019-01-08T20:42:47.754Z\",\n    \"adotado\": false,\n    \"cpf\": \"456\",\n    \"porte\": \"pequeno\"\n}",
+					"raw": "{\n    \"nome\": \"julll\",\n    \"especie\": \"gato\",\n    \"dataNasc\": \"2019-01-08T20:42:47.754Z\",\n    \"adotado\": false,\n    \"cpf\": \"456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,6 +96,27 @@
 					"port": "3000",
 					"path": [
 						"pets",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet - create adoption",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pets/1/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pets",
+						"1",
 						"2"
 					]
 				}
@@ -199,27 +220,6 @@
 			"response": []
 		},
 		{
-			"name": "Pet - create adoption",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/pets/1/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"pets",
-						"1",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Adopter - update address",
 			"request": {
 				"method": "PATCH",
@@ -242,6 +242,27 @@
 					"port": "3000",
 					"path": [
 						"adotante",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet - Adopt pet by adopter id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pets/4/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pets",
+						"4",
 						"3"
 					]
 				}

@@ -27,8 +27,8 @@ export default class AdotanteEntity {
     @JoinColumn()
     endereco?: EnderecoEntity;
 
-    /*@OneToMany(() => PetEntity, (pet) => pet.adotante)
-    pets!: PetEntity[];*/
+    @OneToMany(() => PetEntity, (pet) => pet.adotante)
+    pets!: PetEntity[];
 
     constructor(
         nome: string,
