@@ -1,12 +1,18 @@
 import { Repository } from "typeorm";
 import PetEntity from "../entities/PetEntity";
+import AdotanteRepository from "./AdotanteRepository";
 import InterfacePetRepository from "./interfaces/InterfacePetRepository";
 
 export default class PetRepository implements InterfacePetRepository {
     private repository: Repository<PetEntity>;
+    private adotanteRepository: Repository<AdotanteRepository>
 
-    constructor(repository: Repository<PetEntity>) {
+    constructor(
+        repository: Repository<PetEntity>,
+        adotanteRepository: Repository<AdotanteRepository>
+    ) {
         this.repository = repository;
+        this.adotanteRepository = adotanteRepository;
     }
 
     criarPet(pet: PetEntity): void {
@@ -70,6 +76,16 @@ export default class PetRepository implements InterfacePetRepository {
                 success: false,
                 message: "Occurred an error when tried to delete the pet."
             }
+        }
+    }
+
+    async adotarPet(
+        pet_id: number, 
+        adotante_id: number
+    ): Promise<{ success: boolean, message: string }> {
+        return {
+            success: true,
+            message: 'Adopter linked with pet'
         }
     }
     

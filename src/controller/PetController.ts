@@ -15,7 +15,7 @@ export default class PetController {
     constructor(private repository: PetRepository) {}
 
     async criarPet(req: Request, res: Response) {
-        const { nome, especie, adotado, dataNasc } = <PetEntity>req.body;
+        const { nome, especie, adotado, dataNasc, porte } = <PetEntity>req.body;
 
         if (!especie || !nome || !dataNasc) {
             return res
@@ -35,7 +35,8 @@ export default class PetController {
             nome,
             especie,
             dataNasc,
-            adotado
+            adotado,
+            porte
         );
 
         await this.repository.criarPet(newPet);
@@ -75,6 +76,22 @@ export default class PetController {
         if (!success) {
             return res
                 .status(404)
+                .json({ message });
+        }
+
+        return res.sendStatus(204);
+    }
+
+    async adotarPet (req: Request, res: Response) {
+        const { pet_id, adotante_id } = req.params;
+        const { success, message } = await this.repository.adotarPet(
+            Number(pet_id),
+            Number(adotante_id),
+        );
+
+        if (!success) {
+            return res
+                .status(500)
                 .json({ message });
         }
 
