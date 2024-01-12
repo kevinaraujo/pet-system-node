@@ -21,23 +21,23 @@ export default class PetEntity {
     @Column()
     adotado: boolean;
 
-    @Column()
-    porte: SizeEnum;
+    /*@Column()
+    porte: SizeEnum;*/
 
-    @ManyToOne(() => AdotanteEntity, (adotante) => adotante.pets)
-    adotante!:AdotanteEntity;
+    /*@ManyToOne(() => AdotanteEntity, (adotante) => adotante.pets)
+    adotante!:AdotanteEntity;*/
 
     constructor(
         nome: string,
         especie: SpecieEnum, 
         dataNasc: Date, 
-        adotado: boolean,
-        porte: SizeEnum
+        adotado: boolean/*,
+        porte: SizeEnum*/
     ) {
         this.nome = nome;
         this.especie = especie;
         this.dataNasc = dataNasc;
         this.adotado = adotado;
-        this.porte = porte;
+        //this.porte = porte;
     }
 }

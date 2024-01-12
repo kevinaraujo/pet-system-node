@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import AdotanteEntity from "../entities/AdotanteEntity";
+import EnderecoEntity from "../entities/EnderecoEntity";
 import AdotanteRepository from "../repositories/AdotanteRepository";
 
 export default class AdotanteController {
@@ -72,6 +73,26 @@ export default class AdotanteController {
         const { id } = req.params;
 
         const { success, message } = await this.repository.deletarAdotante(Number(id));
+
+        if (!success) { 
+            return res
+                .status(500)
+                .json(message);
+        }
+
+        return res.json({
+            success: true,
+            message: `Adopter ${id} deleted.`
+        });
+    }
+
+    async atualizarEnderecoAdotante(req: Request, res: Response) {
+        const { id } = req.params;
+
+        const { success, message } = await this.repository.atualizarEnderecoAdotante(
+            Number(id),
+            req.body as EnderecoEntity
+        );
 
         if (!success) { 
             return res

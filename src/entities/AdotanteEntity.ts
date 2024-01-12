@@ -19,12 +19,16 @@ export default class AdotanteEntity {
     @Column({ nullable: true })
     foto?: string;
 
-    @OneToOne(() => EnderecoEntity, { nullable: true, cascade: true, eager: true })
+    @OneToOne(() => EnderecoEntity, { 
+        nullable: true, 
+        cascade: true, 
+        eager: true 
+    })
     @JoinColumn()
     endereco?: EnderecoEntity;
 
-    @OneToMany(() => PetEntity, (pet) => pet.adotante)
-    pets!: PetEntity[];
+    /*@OneToMany(() => PetEntity, (pet) => pet.adotante)
+    pets!: PetEntity[];*/
 
     constructor(
         nome: string,

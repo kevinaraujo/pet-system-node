@@ -15,7 +15,7 @@ export default class PetController {
     constructor(private repository: PetRepository) {}
 
     async criarPet(req: Request, res: Response) {
-        const { nome, especie, adotado, dataNasc, porte } = <PetEntity>req.body;
+        const { nome, especie, adotado, dataNasc } = <PetEntity>req.body;
 
         if (!especie || !nome || !dataNasc) {
             return res
@@ -35,8 +35,7 @@ export default class PetController {
             nome,
             especie,
             dataNasc,
-            adotado,
-            porte
+            adotado
         );
 
         await this.repository.criarPet(newPet);

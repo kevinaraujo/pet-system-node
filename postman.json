@@ -218,6 +218,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Adopter - update address",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cidade\": \"Curitiba\",\n    \"estado\": \"Paraná\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/adotante/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"adotante",
+						"3"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
