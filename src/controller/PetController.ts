@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import PetEntity from "../entities/PetEntity";
+import SizeEnum from "../enum/SizeEnum";
 import SpecieEnum from "../enum/SpecieEnum";
 import PetRepository from "../repositories/PetRepository";
 import type petType from "../types/petType";
@@ -15,7 +16,7 @@ export default class PetController {
     constructor(private repository: PetRepository) {}
 
     async criarPet(req: Request, res: Response) {
-        const { nome, especie, adotado, dataNasc } = <PetEntity>req.body;
+        const { nome, especie, porte, adotado, dataNasc } = <PetEntity>req.body;
 
         if (!especie || !nome || !dataNasc) {
             return res
@@ -28,6 +29,14 @@ export default class PetController {
                 .status(400)
                 .json({ 
                     error: "Invalid Specie"
+                });
+        }
+
+        if (porte && !(porte in SizeEnum)) {
+            return res
+                .status(400)
+                .json({
+                    error: "Invalid porte (size)."
                 })
         }
 
@@ -35,7 +44,8 @@ export default class PetController {
             nome,
             especie,
             dataNasc,
-            adotado
+            adotado,
+            porte
         );
 
         await this.repository.criarPet(newPet);

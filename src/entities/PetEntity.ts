@@ -15,6 +15,9 @@ export default class PetEntity {
     @Column()
     especie: SpecieEnum;
 
+    @Column({ nullable: true })
+    porte?: SizeEnum;
+
     @Column()
     dataNasc: Date;
     
@@ -28,11 +31,13 @@ export default class PetEntity {
         nome: string,
         especie: SpecieEnum, 
         dataNasc: Date, 
-        adotado: boolean
+        adotado: boolean,
+        porte?: SizeEnum,
     ) {
         this.nome = nome;
         this.especie = especie;
         this.dataNasc = dataNasc;
         this.adotado = adotado;
+        this.porte = porte;
     }
 }

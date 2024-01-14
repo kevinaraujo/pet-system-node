@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"julll\",\n    \"especie\": \"gato\",\n    \"dataNasc\": \"2019-01-08T20:42:47.754Z\",\n    \"adotado\": false,\n    \"cpf\": \"456\"\n}",
+					"raw": "{\n    \"nome\": \"julll\",\n    \"especie\": \"gato\",\n    \"dataNasc\": \"2019-01-08T20:42:47.754Z\",\n    \"adotado\": false,\n    \"cpf\": \"456\",\n    \"porte\": \"grande\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
