@@ -106,4 +106,25 @@ export default class PetController {
 
         return res.sendStatus(204);
     }
+
+    async buscarPet(req: Request, res: Response) {
+        try {
+            const { porte } = req.query;
+
+            const data = await this.repository.buscarPet(porte as SizeEnum);
+
+            return res
+                .status(200)
+                .json(data);
+
+        } catch (err) {
+
+            return res
+                .status(400)
+                .json({
+                    error: 'Error on find pets by size(porte).'
+                });
+
+        }
+    }
 }

@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import AdotanteEntity from "../entities/AdotanteEntity";
 import PetEntity from "../entities/PetEntity";
+import SizeEnum from "../enum/SizeEnum";
 import AdotanteRepository from "./AdotanteRepository";
 import InterfacePetRepository from "./interfaces/InterfacePetRepository";
 
@@ -117,4 +118,11 @@ export default class PetRepository implements InterfacePetRepository {
         }
     }
     
+    async buscarPet(porte: SizeEnum): Promise<PetEntity[]> {
+        return await this.repository.find({
+            where: {
+                porte
+            }
+        });
+    }
 }
