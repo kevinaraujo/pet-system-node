@@ -129,13 +129,15 @@ export default class PetController {
     }
 
     async buscarPetByField(req: Request, res: Response) {
+        const { field, value } = req.query;
         try {
-            const { field, value } = req.query;
 
             const pets = await this.repository.buscarPetByField(
                 field as keyof PetEntity, 
                 value as string
             );
+
+            console.log(field as keyof PetEntity);
 
             return res
                 .status(200)
@@ -146,7 +148,7 @@ export default class PetController {
             return res
                 .status(400)
                 .json({
-                    error: 'Error on find pets by size(porte).'
+                    error: `Error on find pets by field (${field}).`
                 });
 
         }
