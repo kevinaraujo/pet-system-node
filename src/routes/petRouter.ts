@@ -16,5 +16,6 @@ router.put('/:id', (req, res) => petController.atualizarPet(req, res));
 router.delete('/:id', (req, res) => petController.deletarPet(req, res));
 router.put('/:pet_id/:adotante_id', (req, res) => petController.adotarPet(req, res));
 router.get('/filter-size', (req, res) => petController.buscarPet(req, res));
+router.get('/filter-by-field', (req, res) =>  petController.buscarPetByField(req, res));
 
 export default router;

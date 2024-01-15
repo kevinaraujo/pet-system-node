@@ -127,4 +127,28 @@ export default class PetController {
 
         }
     }
+
+    async buscarPetByField(req: Request, res: Response) {
+        try {
+            const { field, value } = req.query;
+
+            const pets = await this.repository.buscarPetByField(
+                field as keyof PetEntity, 
+                value as string
+            );
+
+            return res
+                .status(200)
+                .json(pets);
+
+        } catch (err) {
+
+            return res
+                .status(400)
+                .json({
+                    error: 'Error on find pets by size(porte).'
+                });
+
+        }
+    }
 }

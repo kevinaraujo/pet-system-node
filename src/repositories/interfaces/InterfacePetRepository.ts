@@ -8,4 +8,8 @@ export default interface InterfacePetRepository {
     deletarPet(id: number): Promise<{ success: boolean, message?: string}> | void;
     adotarPet(petId: number, adotanteId: number): Promise<{ success: boolean, message: string }>;
     buscarPet(porte: SizeEnum): Promise<PetEntity[]> | PetEntity[];
+    buscarPetByField<Type extends keyof PetEntity>(
+        field: Type, 
+        value: PetEntity[Type]
+    ): Promise<PetEntity[]> | PetEntity[];
 }

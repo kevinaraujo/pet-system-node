@@ -294,6 +294,36 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Pet - filter by field",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pets/filter-by-field?field=especie&value=cachorro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pets",
+						"filter-by-field"
+					],
+					"query": [
+						{
+							"key": "field",
+							"value": "especie"
+						},
+						{
+							"key": "value",
+							"value": "cachorro"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
